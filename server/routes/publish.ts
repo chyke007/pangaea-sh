@@ -5,8 +5,6 @@ const apiRouter = express.Router();
 
 apiRouter.post("/subscribe/:topic",  Base.subscribe );
 
-apiRouter.post("/publish/:topic", () => {
-  console.log("Publish endpoint");
-});
+apiRouter.post("/publish/:topic",  Base.publish );
 
 export default apiRouter;

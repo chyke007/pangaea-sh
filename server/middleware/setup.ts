@@ -1,5 +1,6 @@
 import Express from "express";
 import cors from "cors";
+
 /**
  * @param  {Express.Application} server
  */

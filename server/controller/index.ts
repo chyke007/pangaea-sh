@@ -1,3 +1,3 @@
-import { subscribe } from "./base";
+import { subscribe, publish } from "./base";
 
-export default { subscribe };
+export default { subscribe, publish };
