@@ -1,11 +1,4 @@
-import express from "express";
+import publishRouter from "./publish";
+import subscribeRouter from "./subscribe";
 
-const apiRouter = express.Router();
-
-apiRouter.post("/subscribe/:topic", () => {
-  console.log("Subscribe endpoint");
-}).post("/publish/:topic", () => {
-  console.log("Publish endpoint");
-});
-
-export default apiRouter;
+export { publishRouter, subscribeRouter };

@@ -1,9 +1,15 @@
 import * as dotenv from "dotenv";
 dotenv.config();
-import server from "./server";
+import { publishServer, subscribeServer } from "./server";
 
-const port = process.env.PORT || 9000;
-server.listen(port, () => {
+const publish_port = process.env.PUBLISH_PORT || 8000;
+publishServer.listen(publish_port, () => {
   // eslint-disable-next-line no-console
-  console.log("Server running on port", `${port}`);
+  console.log("Publisher Server running on port", `${publish_port}`);
+});
+
+const subscribe_port = process.env.SUBSCRIBE_PORT || 9000;
+subscribeServer.listen(subscribe_port, () => {
+  // eslint-disable-next-line no-console
+  console.log("Subscriber Server running on port", `${subscribe_port}`);
 });
