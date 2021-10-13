@@ -43,7 +43,7 @@ export const customException = (message: string): CustomEx => {
  * @return {Object}
  */
  export const runIt = async (data: any, url: string ) => {
-   await axios({
+   return await axios({
     method: "post",
     url,
     data 

@@ -3,7 +3,7 @@ import  Base from "../controller";
 
 const apiRouter = express.Router();
 
-apiRouter.get("/:uri",  () => { console.log("Get all subscribers details");} );
-apiRouter.post("/:uri",  () => { console.log("Post to all subscribers details");} );
+apiRouter.get("/:uri",  Base.get );
+apiRouter.post("/:uri",  Base.post );
 
 export default apiRouter;

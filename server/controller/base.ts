@@ -3,15 +3,61 @@ import { Response, Request, NextFunction } from "express";
 import {
   customResult,
   customException,
+  runIt,
   NO_URL,
   BODY_MUST_CONTAIN,
   TOPIC_NO_SUBSCRIBERS,
   MESSAGE_PUBLISHED,
-  runIt,
+  UNKNOWN_ERROR,
   URL_ALREADY_SUBSCRIBED
 } from "../../server/utils";
 import { Pub, Sub } from "../model";
 
+
+/* eslint func-names: ["error", "never"] */
+/**
+ * @param  {Request} req
+ * @param  {Response} res
+ * @param  {NextFunction} next
+ */
+ const get = async function (req:Request, res:Response, next:NextFunction) {
+  try{
+    const { params: { uri } } = req;
+    const sub = await Pub.find({ uri });
+    
+    return res.json(customResult(sub));
+  }catch(e){
+    res.status(400);
+    res.json(customException(UNKNOWN_ERROR));
+  }
+};
+
+/* eslint func-names: ["error", "never"] */
+/**
+ * @param  {Request} req
+ * @param  {Response} res
+ * @param  {NextFunction} next
+ * Saves the payload containing data, topic to collection
+ */
+ const post = async function (req: Request, res: Response, next: NextFunction) {
+  try{
+  const { body: { data, topic } } = req;
+  const { params: { uri } } = req;
+
+  const newPub = await new Pub({
+    uri,
+    data,
+    topic
+  });
+  newPub.save();    
+  return res.json(customResult(newPub));
+
+  } catch(e){
+    res.status(400);
+    res.json(customException(UNKNOWN_ERROR));
+  } 
+
+};
 
  
 /* eslint func-names: ["error", "never"] */
@@ -33,13 +79,13 @@ import { Pub, Sub } from "../model";
 
   const sub = await Sub.findOne({ topic });
   if(!sub){
-    res.status(4041);
+    res.status(404);
     return res.json(customException(TOPIC_NO_SUBSCRIBERS));
   }
 
   await Promise.all(
       sub.url.map(async (t: string) => {
-      await runIt({
+      runIt({
         data: body,
         topic
       },t);
@@ -89,4 +135,4 @@ const subscribe = async function (req: Request, res: Response, next: NextFunctio
    
   };
 
-  export { publish, subscribe };
+  export { get, post, publish, subscribe };
