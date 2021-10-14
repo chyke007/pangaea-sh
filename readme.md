@@ -9,6 +9,7 @@
 
 <p align="center">
   <a href="#how-to-use">How To Use</a> •
+   <a href="#how-to-test">How To Test</a> •
   <a href="#credits">Credits</a> •
   <a href="#license">License</a> •
 </p>
@@ -44,6 +45,16 @@ $ cd pangaea-sh
 
 # Run the app
 $ sh start-server.sh
+```
+
+
+## How To Test
+
+```bash
+
+# Run test
+$ npm test
+
 ```
 
 ## Credits
