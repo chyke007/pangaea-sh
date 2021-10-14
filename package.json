@@ -2,7 +2,6 @@
   "name": "pangaea",
   "version": "1.0.0",
   "description": "Pangaea ",
-  "main": "dist/index.js",
   "scripts": {
     "build-ts": "tsc",
     "coveralls": "jest  --setupFiles dotenv/config --coverage && cat ./coverage/lcov.info | coveralls",

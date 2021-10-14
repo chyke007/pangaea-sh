@@ -42,7 +42,8 @@ $ git clone https://github.com/chyke007/pangaea-sh.git
 # Go into the repository
 $ cd pangaea-sh
 
-sh start-server.sh
+# Run the app
+$ sh start-server.sh
 ```
 
 ## Credits
