@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
-import { DB_URL } from "../../config";
+import { DB_NAME, DB_URL, DB_OPTIONS } from "../../config";
 
 export default () => {
-  process.env.NODE_ENV !== "test" && console.log("connecting to mongo...");
+    process.env.NODE_ENV !== "test" && console.log("connecting to mongo...");
   const connectWithRetry = () => {
-    mongoose.connect(DB_URL);
+    mongoose.connect(DB_URL, DB_OPTIONS);
   };
   mongoose.connection.on("error", () => {
     connectWithRetry();
